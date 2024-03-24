@@ -1,10 +1,10 @@
+package statsLibrary;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
  * The StatsLibrary class contains multiple functions associated with statistics.
- * Functions included are central tendencies (mean, median, and mode), standard deviation and variance, 
- * permutation, combination, and binomial distribution. 
  * 
  * @author Jake Cubernot
  */
@@ -274,7 +274,7 @@ public class StatsLibrary {
 	 */
 	public double findPoissonDistribution(int x, int lambda) {
 		double poissonDistributionNumerator = Math.pow(lambda, x) * Math.pow(Math.E, -1 * lambda);
-		return poissonDistributionNumerator/((int)findFactorial(x));
+		return poissonDistributionNumerator/findFactorial(x).intValue();
 	}
 
 }
