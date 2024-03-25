@@ -32,7 +32,7 @@ public class Plotter {
 		Random rng = new Random();
 		for (int i = 0; i < userGraph.length; i++) {
 			double oldYValue = Double.parseDouble(userGraph[i][1]);
-			double newYValue = oldYValue + rng.nextDouble(-1, 1);
+			double newYValue = oldYValue + rng.nextDouble(-3, 3);
 			userGraph[i][1] = String.valueOf(newYValue);
 		}
 		return userGraph;
@@ -101,8 +101,11 @@ public class Plotter {
 		writeCSVFile(userSineFunction, "User Function with Salting.csv");
 	}
 
-	public void runSmoother(String fileName, String newFileName) throws IOException {
+	public void runSmoother(String fileName) throws IOException {
 		String[][] userSineFunction = smoothGraph(openCSVFile(fileName));
-		writeCSVFile(userSineFunction, newFileName);
+		for (int i = 1; i < 200; i++) {
+			userSineFunction = smoothGraph(userSineFunction);
+		}
+		writeCSVFile(userSineFunction, "User Function with Smoother.csv");
 	}
 }
