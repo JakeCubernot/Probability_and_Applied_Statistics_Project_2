@@ -38,4 +38,14 @@ public class StatsLibrary {
 		return poissonDistributionNumerator/findFactorial(x).intValue();
 	}
 
+	/**
+	 * Finds the Chebyshev's theorem of a given set of variable.
+	 * 
+	 * @param k for any number k greater than 1
+	 * @return The double result of the Chebyshev's theorem.
+	 */
+	public double findChebyshevsTheorem(int k) {
+		return (1 - (1 / Math.pow(k, 2)));
+	}
+	
 }
