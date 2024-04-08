@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Probability_and_Applied_Statistics_Project_2/lib/jfreechart-1.0.19-demo.jar",
+        "Probability_and_Applied_Statistics_Project_2/lib/commons-math4-core-4.0-beta1.jar"
+    ]
+}
