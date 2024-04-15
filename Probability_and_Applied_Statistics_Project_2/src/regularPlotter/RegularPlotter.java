@@ -1,4 +1,4 @@
-package plotter;
+package regularPlotter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,9 +11,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class Plotter {
+public class RegularPlotter {
 
-    private String[][] graphFunction(double minValue, double maxValue, double incrementValue) {
+    protected String[][] graphFunction(double minValue, double maxValue, double incrementValue) {
 		int lengthOfX = (int) Math.ceil((maxValue - minValue) / incrementValue) + 1;
         String[][] sineFunctionResult = new String[lengthOfX][2];
         for (int i = 0; i < lengthOfX; i++) {
@@ -28,7 +28,7 @@ public class Plotter {
 		return Math.sin(x / 2);
 	}
 
-	private String[][] saltGraph(String[][] userGraph) {
+	protected String[][] saltGraph(String[][] userGraph) {
 		Random rng = new Random();
 		for (int i = 0; i < userGraph.length; i++) {
 			double oldYValue = Double.parseDouble(userGraph[i][1]);
@@ -38,7 +38,7 @@ public class Plotter {
 		return userGraph;
 	}
 
-	private String[][] smoothGraph(String[][] userGraph) {
+	protected String[][] smoothGraph(String[][] userGraph) {
 		for (int i = 1; i < userGraph.length - 1; i++) {
 			double previousYValue = Double.parseDouble(userGraph[i - 1][1]);
 			double currentYValue = Double.parseDouble(userGraph[i][1]);
@@ -53,7 +53,7 @@ public class Plotter {
 	}
 
     // Method from https://springhow.com/java-write-csv/.
-    private void writeCSVFile(String[][] matrixData, String fileName) throws IOException {
+    protected void writeCSVFile(String[][] matrixData, String fileName) throws IOException {
     	
     	File csvFile = new File(fileName);
     	FileWriter fileWriter = new FileWriter(csvFile);
@@ -74,7 +74,7 @@ public class Plotter {
     }
 
 	// Method inspired from https://www.baeldung.com/java-csv-file-array.
-	private String[][] openCSVFile(String fileName) throws FileNotFoundException, IOException {
+	protected String[][] openCSVFile(String fileName) throws FileNotFoundException, IOException {
 		List<List<String>> records = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line;
