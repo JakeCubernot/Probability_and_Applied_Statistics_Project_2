@@ -27,7 +27,7 @@ public class JFreeChartPlotter extends RegularPlotter {
         XYSeries normalFunction = new XYSeries("User Function");
         XYSeries saltedFunction = new XYSeries("Salted Function");
         XYSeries smoothedFunction = new XYSeries("Smoothed Function");
-
+        
         JFreeChartPlotter plotter = new JFreeChartPlotter();
 
         String[][] csvValues = plotter.openCSVFile("F:/Probability_and_Applied_Statistics_Project_2/Probability_and_Applied_Statistics_Project_2/documentation/Plotter Work/Regular Plotter Work/Step 1, User Function.csv");
