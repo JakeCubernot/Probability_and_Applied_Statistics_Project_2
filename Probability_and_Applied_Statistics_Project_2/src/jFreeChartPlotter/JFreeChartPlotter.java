@@ -30,17 +30,19 @@ public class JFreeChartPlotter extends RegularPlotter {
         
         JFreeChartPlotter plotter = new JFreeChartPlotter();
 
-        String[][] csvValues = plotter.openCSVFile("F:/Probability_and_Applied_Statistics_Project_2/Probability_and_Applied_Statistics_Project_2/documentation/Plotter Work/Regular Plotter Work/Step 1, User Function.csv");
-        for (int i = 0; i < csvValues.length; i++) {
-            normalFunction.add(Double.parseDouble(csvValues[i][0]), Double.parseDouble(csvValues[i][1]));
+        String[][] graphValues = plotter.graphFunction(-25, 25, 0.1);
+        for (int i = 0; i < graphValues.length; i++) {
+            normalFunction.add(Double.parseDouble(graphValues[i][0]), Double.parseDouble(graphValues[i][1]));
         }
-        csvValues = plotter.openCSVFile("F:/Probability_and_Applied_Statistics_Project_2/Probability_and_Applied_Statistics_Project_2/documentation/Plotter Work/Regular Plotter Work/Step 2, User Function with Salting.csv");
-        for (int i = 0; i < csvValues.length; i++) {
-            saltedFunction.add(Double.parseDouble(csvValues[i][0]), Double.parseDouble(csvValues[i][1]));
+        plotter.saltGraph(graphValues);
+        for (int i = 0; i < graphValues.length; i++) {
+            saltedFunction.add(Double.parseDouble(graphValues[i][0]), Double.parseDouble(graphValues[i][1]));
         }
-        csvValues = plotter.openCSVFile("F:/Probability_and_Applied_Statistics_Project_2/Probability_and_Applied_Statistics_Project_2/documentation/Plotter Work/Regular Plotter Work/Step 3, User Function with Smoother.csv");
-        for (int i = 0; i < csvValues.length; i++) {
-            smoothedFunction.add(Double.parseDouble(csvValues[i][0]), Double.parseDouble(csvValues[i][1]));
+        for (int i = 0; i < 200; i++) {
+            plotter.smoothGraph(graphValues);
+        }
+        for (int i = 0; i < graphValues.length; i++) {
+            smoothedFunction.add(Double.parseDouble(graphValues[i][0]), Double.parseDouble(graphValues[i][1]));
         }
               
         XYSeriesCollection dataset = new XYSeriesCollection(normalFunction);
