@@ -48,4 +48,14 @@ public class StatsLibrary {
 		return (1 - (1 / Math.pow(k, 2)));
 	}
 	
+	/**
+	 * Finds the uniform distribution of a given set of variables.
+	 * 
+	 * @param a Lowest value of x 
+	 * @param b Highest value of x
+	 * @return The double result of the uniform distribution.
+	 */
+	public double findUniformDistribution(double a, double b) {
+		return (1/(b - a));
+	}
 }
