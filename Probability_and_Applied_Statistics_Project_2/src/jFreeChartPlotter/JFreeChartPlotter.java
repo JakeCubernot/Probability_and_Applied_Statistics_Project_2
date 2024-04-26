@@ -38,9 +38,7 @@ public class JFreeChartPlotter extends RegularPlotter {
         for (int i = 0; i < graphValues.length; i++) {
             saltedFunction.add(Double.parseDouble(graphValues[i][0]), Double.parseDouble(graphValues[i][1]));
         }
-        for (int i = 0; i < 200; i++) {
-            plotter.smoothGraph(graphValues);
-        }
+        plotter.autoSmoother(graphValues);
         for (int i = 0; i < graphValues.length; i++) {
             smoothedFunction.add(Double.parseDouble(graphValues[i][0]), Double.parseDouble(graphValues[i][1]));
         }

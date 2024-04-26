@@ -52,6 +52,44 @@ public class RegularPlotter {
 		return (previousYValue + currentYValue + nextYValue) / 3;
 	}
 
+	protected String[][] autoSmoother(String[][] userGraph) {
+		int smoothCounter = 0;
+		while (!isSmoothed(userGraph)) {
+			userGraph = smoothGraph(userGraph);
+			smoothCounter++;
+		}
+		System.out.println(smoothCounter);
+		return userGraph;
+	}
+	
+	private boolean isSmoothed(String[][] userGraph) {
+		for (int i = 1; i < userGraph.length - 5; i++) {
+			double previousYValue = Double.parseDouble(userGraph[i - 1][1]);
+			double currentYValue = Double.parseDouble(userGraph[i][1]);
+			double nextYValue = Double.parseDouble(userGraph[i + 1][1]);
+	
+			double yAverage = getYAverage(previousYValue, currentYValue, nextYValue);
+	
+			double percentage = 0.01; // Evaluates each Y difference within a range 2% below and above the average
+			double yAverageMax = yAverage * (1 + percentage); 
+        	double yAverageMin = yAverage - (yAverage * percentage); 
+	
+			boolean isSmoothed = true; 
+			for (int j = 0; j < 3; j++) {
+				double yDifference = Double.parseDouble(userGraph[i + 2 + j][1]) - Double.parseDouble(userGraph[i + 1 + j][1]);
+				if (yDifference < yAverageMin || yDifference > yAverageMax) {
+					isSmoothed = false; 
+					break; 
+				}
+			}
+	
+			if (isSmoothed) {
+				return true; 
+			}
+		}
+		return false; 
+	}	
+
     // Method from https://springhow.com/java-write-csv/.
     protected void writeCSVFile(String[][] matrixData, String fileName) throws IOException {
     	
