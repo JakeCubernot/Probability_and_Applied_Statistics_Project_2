@@ -41,8 +41,8 @@ public class StockDataPlotter extends RegularPlotter {
             stockSeries.add(i, Double.parseDouble(graphValues[i][1]));
         }
 
-        for (int i = 0; i < 10; i++) {
-            smoothGraph(graphValues);
+        for (int i = 0; i < 5; i++) {
+            smoothGraph(graphValues); 
         }
 
         for (int i = 0; i < graphValues.length; i++) {
