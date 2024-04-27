@@ -76,7 +76,8 @@ public class RegularPlotter {
 	
 			boolean isSmoothed = true; 
 			for (int j = 0; j < 3; j++) {
-				double yDifference = Double.parseDouble(userGraph[i + 2 + j][1]) - Double.parseDouble(userGraph[i + 1 + j][1]);
+				double yDifference = Double.parseDouble(userGraph[i + 2 + j][1]) - 
+				Double.parseDouble(userGraph[i + 1 + j][1]);
 				if (yDifference < yAverageMin || yDifference > yAverageMax) {
 					isSmoothed = false; 
 					break; 
