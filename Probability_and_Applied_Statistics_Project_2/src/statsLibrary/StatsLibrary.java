@@ -39,7 +39,7 @@ public class StatsLibrary {
 	}
 
 	/**
-	 * Finds the Chebyshev's theorem of a given set of variable.
+	 * Finds Chebyshev's theorem of a given variable.
 	 * 
 	 * @param k for any number k greater than 1
 	 * @return The double result of the Chebyshev's theorem.
