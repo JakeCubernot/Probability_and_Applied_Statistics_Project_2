@@ -16,6 +16,8 @@ import regularPlotter.RegularPlotter;
  * https://commons.apache.org/proper/commons-math/javadocs/api-3.6.1/org/apache/commons/math3/analysis/function/Sin.html
  * https://commons.apache.org/proper/commons-math/javadocs/api-3.6.1/org/apache/commons/math3/stat/descriptive/moment/Mean.html
  * https://commons.apache.org/proper/commons-math/javadocs/api-3.6.1/org/apache/commons/math3/random/RandomDataGenerator.html
+ * 
+ * @author Jake Cubernot
  */
 public class CommonsMathPlotter extends RegularPlotter {
 

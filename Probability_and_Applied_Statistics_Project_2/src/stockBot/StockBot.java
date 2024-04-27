@@ -7,27 +7,31 @@ import java.text.DecimalFormat;
 import org.jfree.data.xy.XYSeries;
 
 /**
+ * A bot that observes stock trends and evaluates when to buy, sell, or hold shares within the stock. 
+ * 
  * Sources:
  * https://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html
+ * 
+ * @author Jake Cubernot 
  */
 public class StockBot {
     private StockDataPlotter stockData;
 
     private XYSeries stockSeries;
     private XYSeries movingAverageSeries;
-    private XYSeries rsiSeries;
+    private XYSeries rsiSeries; 
 
     private String[] stockDates;
     private double balance = 10000;
     private double transactionCost = 10; 
     private double currentShares = 0; 
 
-    public StockBot() throws FileNotFoundException, IOException {
-        stockData = new StockDataPlotter();
-        stockSeries = stockData.getStockSeries();
-        movingAverageSeries = stockData.getMovingAverageSeries();
-        rsiSeries = stockData.getRSISeries();
-        stockDates = stockData.getStockDates();
+    public StockBot() throws FileNotFoundException, IOException { 
+        stockData = new StockDataPlotter(); 
+        stockSeries = stockData.getStockSeries(); 
+        movingAverageSeries = stockData.getMovingAverageSeries(); 
+        rsiSeries = stockData.getRSISeries(); 
+        stockDates = stockData.getStockDates(); 
     }
 
     private int tradeEvaluator(int index) {
@@ -35,15 +39,15 @@ public class StockBot {
         double movingAverage = movingAverageSeries.getY(index).doubleValue();
         double rsiValue;
         
-        if (index >= 14 && index < rsiSeries.getItemCount() + 14) {
-            rsiValue = rsiSeries.getY(index - 14).doubleValue();
-        } else {
+        if (index >= 14 && index < rsiSeries.getItemCount() + 14) { 
+            rsiValue = rsiSeries.getY(index - 14).doubleValue(); 
+        } else { 
             rsiValue = 50; 
-        }
-    
-        if (rsiValue > 70) { // If RSI is above 70%, buy 100%
+        } 
+
+        if (rsiValue > 70) { // If RSI is above 70%, buy 100% 
             return 1; // Buy 
-        } else if (rsiValue < 30) { // If RSI is below 30%, sell 100%
+        } else if (rsiValue < 30) { // If RSI is below 30%, sell 100% 
             return -1; // Sell 
         } else if (stockPrice > movingAverage * 1.03) { // Compares the stock price with the 3% above the MA 
             return 1; // Buy 

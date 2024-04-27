@@ -21,6 +21,8 @@ import regularPlotter.RegularPlotter;
  * 
  * Sources: 
  * https://stackoverflow.com/a/12318835
+ * 
+ * @author Jake Cubernot
  */
 public class JFreeChartPlotter extends RegularPlotter {
     public static void main(String[] args) throws FileNotFoundException, IOException {

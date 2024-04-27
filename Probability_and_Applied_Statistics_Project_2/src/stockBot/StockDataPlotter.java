@@ -17,6 +17,10 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import regularPlotter.RegularPlotter;
 
+
+/**
+ * @author Jake Cubernot
+ */
 public class StockDataPlotter extends RegularPlotter {
 
     private XYSeries stockSeries;

@@ -11,8 +11,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The RegularPlotter class provides the basic functions to plot and alter mathematical equations. 
+ * 
+ * @author Jake Cubernot 
+ */
 public class RegularPlotter {
 
+	
+	/**
+	 * Creates the graph using a given function. 
+	 * 
+	 * @param minValue minimum x value of function.
+	 * @param maxValue maximum x value of function.
+	 * @param incrementValue the distance between each x value.
+	 * @return plots to the function in a String matrix. 
+	 */
     protected String[][] graphFunction(double minValue, double maxValue, double incrementValue) {
 		int lengthOfX = (int) Math.ceil((maxValue - minValue) / incrementValue) + 1;
         String[][] sineFunctionResult = new String[lengthOfX][2];
@@ -24,10 +38,24 @@ public class RegularPlotter {
         return sineFunctionResult;
     }
 
+
+	/**
+	 * Gets the y of the given fuction at x.
+	 * 
+	 * @param x x value of function.
+	 * @return the result y of the function as a double.
+	 */
 	private double getYOfFunction(double x) {
 		return Math.sin(x / 2);
 	}
 
+
+	/**
+	 * Randomly salts the given function.
+	 * 
+	 * @param userGraph user's function to salt.
+	 * @return the salted function as a String matrix.  
+	 */
 	protected String[][] saltGraph(String[][] userGraph) {
 		Random rng = new Random();
 		for (int i = 0; i < userGraph.length; i++) {
@@ -38,6 +66,13 @@ public class RegularPlotter {
 		return userGraph;
 	}
 
+
+	/**
+	 * Smooths the given function using the moving mean average.
+	 * 
+	 * @param userGraph user's function to smooth.
+	 * @return the smoothed function as a String matrix. 
+	 */
 	protected String[][] smoothGraph(String[][] userGraph) {
 		for (int i = 1; i < userGraph.length - 1; i++) {
 			double previousYValue = Double.parseDouble(userGraph[i - 1][1]);
@@ -48,10 +83,26 @@ public class RegularPlotter {
 		return userGraph;
 	}
 
+
+	/**
+	 * Finds the mean of the Y differece between three neighboring x values. 
+	 * 
+	 * @param previousYValue previous index.
+	 * @param currentYValue current index.
+	 * @param nextYValue next index.
+	 * @return the mean result as a double. 
+	 */
 	private double getYAverage(double previousYValue, double currentYValue, double nextYValue) {
 		return (previousYValue + currentYValue + nextYValue) / 3;
 	}
 
+
+	/**
+	 * Automatically repeats smoothing process of the function until satisfied . 
+	 * 
+	 * @param userGraph user's function to automatically smooth.
+	 * @return
+	 */
 	protected String[][] autoSmoother(String[][] userGraph) {
 		int smoothCounter = 0;
 		while (!isSmoothed(userGraph)) {
@@ -62,6 +113,13 @@ public class RegularPlotter {
 		return userGraph;
 	}
 	
+
+	/**
+	 * Determines when the function is smoothed enough. 
+	 * 
+	 * @param userGraph user's function to be tested.
+	 * @return the boolean of if the function is smoothed. 
+	 */
 	private boolean isSmoothed(String[][] userGraph) {
 		for (int i = 1; i < userGraph.length - 5; i++) {
 			double previousYValue = Double.parseDouble(userGraph[i - 1][1]);
@@ -89,7 +147,8 @@ public class RegularPlotter {
 			}
 		}
 		return false; 
-	}	
+	} 
+
 
     // Method from https://springhow.com/java-write-csv/.
     protected void writeCSVFile(String[][] matrixData, String fileName) throws IOException {
@@ -110,8 +169,9 @@ public class RegularPlotter {
     	}
     	fileWriter.flush();
     	fileWriter.close();
-    }
+    } 
 
+	
 	// Method inspired from https://www.baeldung.com/java-csv-file-array.
 	protected String[][] openCSVFile(String fileName) throws FileNotFoundException, IOException {
 		List<List<String>> records = new ArrayList<>();
